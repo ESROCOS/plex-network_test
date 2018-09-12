@@ -7,6 +7,7 @@ void a_startup()
 {
     /* Write your initialization code here,
        but do not make any call to a required interface. */
+    printf("A!\n");
 }
 
 void a_PI_clock()
