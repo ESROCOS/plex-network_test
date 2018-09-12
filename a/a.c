@@ -12,10 +12,12 @@ void a_startup()
 
 void a_PI_clock()
 {
-    printf("A -> B: 0\n");
     /* Write your code here! */
     asn1SccT_Int32 cnt = 0;
+    printf("A -> B: 0\n");
     a_RI_AB(&cnt);
+    printf("A -> X: 0\n");
+    a_RI_AX(&cnt);
 }
 
 void a_PI_BA(const asn1SccT_Int32 *IN_cnt)
