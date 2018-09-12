@@ -14,32 +14,14 @@ WITH Taste;
 WITH DataView;
 WITH TASTE_IV_Properties;
 SUBPROGRAM PI_clock
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
 END PI_clock;
 
 SUBPROGRAM IMPLEMENTATION PI_clock.others
 PROPERTIES
   Compute_Execution_Time => 0 ms .. 0 ms;
 END PI_clock.others;
-
-SUBPROGRAM RI_AB
-FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
-    Taste::encoding => NATIVE;
-  };
-END RI_AB;
-
-SUBPROGRAM IMPLEMENTATION RI_AB.others
-END RI_AB.others;
-
-SUBPROGRAM RI_AX
-FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
-    Taste::encoding => NATIVE;
-  };
-END RI_AX;
-
-SUBPROGRAM IMPLEMENTATION RI_AX.others
-END RI_AX.others;
 
 SUBPROGRAM PI_BA
 FEATURES
@@ -58,7 +40,7 @@ END PI_BA.others;
 SUBPROGRAM PI_XA
 FEATURES
   cnt : IN PARAMETER DataView::T_Int32 {
-    Taste::encoding => NATIVE;
+    Taste::encoding => UPER;
   };
 PROPERTIES
   Taste::Associated_Queue_Size => 1;
@@ -69,13 +51,48 @@ PROPERTIES
   Compute_Execution_Time => 0 ms .. 0 ms;
 END PI_XA.others;
 
+SUBPROGRAM RI_AB
+FEATURES
+  cnt : IN PARAMETER DataView::T_Int32 {
+    Taste::encoding => NATIVE;
+  };
+END RI_AB;
+
+SUBPROGRAM IMPLEMENTATION RI_AB.others
+END RI_AB.others;
+
+SUBPROGRAM RI_AX
+FEATURES
+  cnt : IN PARAMETER DataView::T_Int32 {
+    Taste::encoding => UPER;
+  };
+END RI_AX;
+
+SUBPROGRAM IMPLEMENTATION RI_AX.others
+END RI_AX.others;
+
 SYSTEM A
 FEATURES
   PI_clock : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::A::PI_clock.others {
     Taste::coordinates => "135115 55433";
     Taste::RCMoperationKind => cyclic;
     Taste::RCMperiod => 1000 ms;
+    Taste::Deadline => 0 ms;
     Taste::InterfaceName => "clock";
+  };
+  PI_BA : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::A::PI_BA.others {
+    Taste::coordinates => "145035 65510";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "BA";
+  };
+  PI_XA : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::A::PI_XA.others {
+    Taste::coordinates => "151964 65510";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "XA";
   };
   RI_AB : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::B::PI_AB.others {
     Taste::coordinates => "138421 65510";
@@ -88,16 +105,6 @@ FEATURES
     Taste::RCMoperationKind => any;
     Taste::InterfaceName => "AX";
     Taste::labelInheritance => "true";
-  };
-  PI_BA : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::A::PI_BA.others {
-    Taste::coordinates => "145035 65510";
-    Taste::RCMoperationKind => sporadic;
-    Taste::InterfaceName => "BA";
-  };
-  PI_XA : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::A::PI_XA.others {
-    Taste::coordinates => "151964 65510";
-    Taste::RCMoperationKind => sporadic;
-    Taste::InterfaceName => "XA";
   };
 PROPERTIES
   Source_Language => (C);
@@ -134,7 +141,7 @@ END PI_AB.others;
 SUBPROGRAM PI_XB
 FEATURES
   cnt : IN PARAMETER DataView::T_Int32 {
-    Taste::encoding => NATIVE;
+    Taste::encoding => UPER;
   };
 PROPERTIES
   Taste::Associated_Queue_Size => 1;
@@ -158,7 +165,7 @@ END RI_BA.others;
 SUBPROGRAM RI_BX
 FEATURES
   cnt : IN PARAMETER DataView::T_Int32 {
-    Taste::encoding => NATIVE;
+    Taste::encoding => UPER;
   };
 END RI_BX;
 
@@ -170,11 +177,15 @@ FEATURES
   PI_AB : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::B::PI_AB.others {
     Taste::coordinates => "121414 88345";
     Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
     Taste::InterfaceName => "AB";
   };
   PI_XB : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::B::PI_XB.others {
     Taste::coordinates => "121414 99370";
     Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
     Taste::InterfaceName => "XB";
   };
   RI_BA : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::A::PI_BA.others {
@@ -207,30 +218,10 @@ WITH interfaceview::IV::A;
 WITH Taste;
 WITH DataView;
 WITH TASTE_IV_Properties;
-SUBPROGRAM RI_XB
-FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
-    Taste::encoding => NATIVE;
-  };
-END RI_XB;
-
-SUBPROGRAM IMPLEMENTATION RI_XB.others
-END RI_XB.others;
-
-SUBPROGRAM RI_XA
-FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
-    Taste::encoding => NATIVE;
-  };
-END RI_XA;
-
-SUBPROGRAM IMPLEMENTATION RI_XA.others
-END RI_XA.others;
-
 SUBPROGRAM PI_AX
 FEATURES
   cnt : IN PARAMETER DataView::T_Int32 {
-    Taste::encoding => NATIVE;
+    Taste::encoding => UPER;
   };
 PROPERTIES
   Taste::Associated_Queue_Size => 1;
@@ -244,7 +235,7 @@ END PI_AX.others;
 SUBPROGRAM PI_BX
 FEATURES
   cnt : IN PARAMETER DataView::T_Int32 {
-    Taste::encoding => NATIVE;
+    Taste::encoding => UPER;
   };
 PROPERTIES
   Taste::Associated_Queue_Size => 1;
@@ -255,8 +246,42 @@ PROPERTIES
   Compute_Execution_Time => 0 ms .. 0 ms;
 END PI_BX.others;
 
+SUBPROGRAM RI_XB
+FEATURES
+  cnt : IN PARAMETER DataView::T_Int32 {
+    Taste::encoding => UPER;
+  };
+END RI_XB;
+
+SUBPROGRAM IMPLEMENTATION RI_XB.others
+END RI_XB.others;
+
+SUBPROGRAM RI_XA
+FEATURES
+  cnt : IN PARAMETER DataView::T_Int32 {
+    Taste::encoding => UPER;
+  };
+END RI_XA;
+
+SUBPROGRAM IMPLEMENTATION RI_XA.others
+END RI_XA.others;
+
 SYSTEM X
 FEATURES
+  PI_AX : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::X::PI_AX.others {
+    Taste::coordinates => "170074 88344";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "AX";
+  };
+  PI_BX : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::X::PI_BX.others {
+    Taste::coordinates => "170074 95746";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "BX";
+  };
   RI_XB : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::B::PI_XB.others {
     Taste::coordinates => "170074 98739";
     Taste::RCMoperationKind => any;
@@ -268,16 +293,6 @@ FEATURES
     Taste::RCMoperationKind => any;
     Taste::InterfaceName => "XA";
     Taste::labelInheritance => "true";
-  };
-  PI_AX : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::X::PI_AX.others {
-    Taste::coordinates => "170074 88344";
-    Taste::RCMoperationKind => sporadic;
-    Taste::InterfaceName => "AX";
-  };
-  PI_BX : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::X::PI_BX.others {
-    Taste::coordinates => "170074 95746";
-    Taste::RCMoperationKind => sporadic;
-    Taste::InterfaceName => "BX";
   };
 PROPERTIES
   Source_Language => (C);
@@ -316,17 +331,17 @@ SUBCOMPONENTS
     Taste::coordinates => "170074 86139 195743 105351";
   };
 CONNECTIONS
-  B_PI_AB_A_RI_AB : SUBPROGRAM ACCESS B.PI_AB -> A.RI_AB {
-    Taste::coordinates => "138421 65510 138421 88345 121414 88345";
-  };
-  X_PI_AX_A_RI_AX : SUBPROGRAM ACCESS X.PI_AX -> A.RI_AX {
-    Taste::coordinates => "157003 65510 157003 88344 170074 88344";
-  };
   A_PI_BA_B_RI_BA : SUBPROGRAM ACCESS A.PI_BA -> B.RI_BA {
     Taste::coordinates => "121414 91495 145035 91495 145035 65510";
   };
   A_PI_XA_X_RI_XA : SUBPROGRAM ACCESS A.PI_XA -> X.RI_XA {
     Taste::coordinates => "170074 91493 151964 91493 151964 65510";
+  };
+  B_PI_AB_A_RI_AB : SUBPROGRAM ACCESS B.PI_AB -> A.RI_AB {
+    Taste::coordinates => "138421 65510 138421 88345 121414 88345";
+  };
+  X_PI_AX_A_RI_AX : SUBPROGRAM ACCESS X.PI_AX -> A.RI_AX {
+    Taste::coordinates => "157003 65510 157003 88344 170074 88344";
   };
   B_PI_XB_X_RI_XB : SUBPROGRAM ACCESS B.PI_XB -> X.RI_XB {
     Taste::coordinates => "170074 98739 145744 98739 145744 99370 121414 99370";
