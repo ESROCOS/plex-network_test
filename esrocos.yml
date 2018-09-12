@@ -1,0 +1,4 @@
+ASNACN_DIR: dataview/
+PROJECT_NAME: plex-network_test
+deps:
+- types/base: ''
