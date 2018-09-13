@@ -12,6 +12,19 @@ void a_startup()
     printf("A!\n");
 }
 
+void init_rbs(asn1SccBase_samples_RigidBodyState *rbs)
+{
+   memset(rbs, 0, sizeof(asn1SccBase_samples_RigidBodyState));
+   rbs->position.data.nCount = 3;
+   rbs->cov_position.data.nCount = 9;
+   rbs->orientation.im.nCount = 3;
+   rbs->cov_orientation.data.nCount = 9;
+   rbs->velocity.data.nCount = 3;
+   rbs->cov_velocity.data.nCount = 9;
+   rbs->angular_velocity.data.nCount = 3;
+   rbs->cov_angular_velocity.data.nCount = 9;
+}
+
 void a_PI_clock()
 {
     /* Write your code here! */
@@ -19,8 +32,7 @@ void a_PI_clock()
     asn1SccBase_samples_RigidBodyState rbs;
     struct timespec spec;
 
-    memset(&rbs, 0, sizeof(rbs));
-    rbs.position.data.nCount = 3;
+    init_rbs(&rbs);
     for (i = 0; i < 3; ++i)
 	rbs.position.data.arr[i] = i;
     clock_gettime(CLOCK_REALTIME, &spec);
