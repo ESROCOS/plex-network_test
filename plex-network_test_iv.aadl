@@ -25,7 +25,7 @@ END PI_clock.others;
 
 SUBPROGRAM PI_BA
 FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
+  cnt : IN PARAMETER DataView::Base_samples_RigidBodyState {
     Taste::encoding => NATIVE;
   };
 PROPERTIES
@@ -39,7 +39,7 @@ END PI_BA.others;
 
 SUBPROGRAM PI_XA
 FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
+  cnt : IN PARAMETER DataView::Base_samples_RigidBodyState {
     Taste::encoding => UPER;
   };
 PROPERTIES
@@ -53,7 +53,7 @@ END PI_XA.others;
 
 SUBPROGRAM RI_AB
 FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
+  cnt : IN PARAMETER DataView::Base_samples_RigidBodyState {
     Taste::encoding => NATIVE;
   };
 END RI_AB;
@@ -63,7 +63,7 @@ END RI_AB.others;
 
 SUBPROGRAM RI_AX
 FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
+  cnt : IN PARAMETER DataView::Base_samples_RigidBodyState {
     Taste::encoding => UPER;
   };
 END RI_AX;
@@ -126,7 +126,7 @@ WITH DataView;
 WITH TASTE_IV_Properties;
 SUBPROGRAM PI_AB
 FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
+  cnt : IN PARAMETER DataView::Base_samples_RigidBodyState {
     Taste::encoding => NATIVE;
   };
 PROPERTIES
@@ -140,7 +140,7 @@ END PI_AB.others;
 
 SUBPROGRAM PI_XB
 FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
+  cnt : IN PARAMETER DataView::Base_samples_RigidBodyState {
     Taste::encoding => UPER;
   };
 PROPERTIES
@@ -154,7 +154,7 @@ END PI_XB.others;
 
 SUBPROGRAM RI_BA
 FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
+  cnt : IN PARAMETER DataView::Base_samples_RigidBodyState {
     Taste::encoding => NATIVE;
   };
 END RI_BA;
@@ -164,7 +164,7 @@ END RI_BA.others;
 
 SUBPROGRAM RI_BX
 FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
+  cnt : IN PARAMETER DataView::Base_samples_RigidBodyState {
     Taste::encoding => UPER;
   };
 END RI_BX;
@@ -220,7 +220,7 @@ WITH DataView;
 WITH TASTE_IV_Properties;
 SUBPROGRAM PI_AX
 FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
+  cnt : IN PARAMETER DataView::Base_samples_RigidBodyState {
     Taste::encoding => UPER;
   };
 PROPERTIES
@@ -234,7 +234,7 @@ END PI_AX.others;
 
 SUBPROGRAM PI_BX
 FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
+  cnt : IN PARAMETER DataView::Base_samples_RigidBodyState {
     Taste::encoding => UPER;
   };
 PROPERTIES
@@ -248,7 +248,7 @@ END PI_BX.others;
 
 SUBPROGRAM RI_XB
 FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
+  cnt : IN PARAMETER DataView::Base_samples_RigidBodyState {
     Taste::encoding => UPER;
   };
 END RI_XB;
@@ -258,7 +258,7 @@ END RI_XB.others;
 
 SUBPROGRAM RI_XA
 FEATURES
-  cnt : IN PARAMETER DataView::T_Int32 {
+  cnt : IN PARAMETER DataView::Base_samples_RigidBodyState {
     Taste::encoding => UPER;
   };
 END RI_XA;

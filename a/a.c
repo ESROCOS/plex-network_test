@@ -2,6 +2,8 @@
 
 #include "a.h"
 #include <stdio.h>
+#include <time.h>
+#include <string.h>
 
 void a_startup()
 {
@@ -13,22 +15,39 @@ void a_startup()
 void a_PI_clock()
 {
     /* Write your code here! */
-    asn1SccT_Int32 cnt = 0;
-    printf("A -> B: 0\n");
-    a_RI_AB(&cnt);
-    printf("A -> X: 0\n");
-    a_RI_AX(&cnt);
+    int i;
+    asn1SccBase_samples_RigidBodyState rbs;
+    struct timespec spec;
+
+    memset(&rbs, 0, sizeof(rbs));
+    rbs.position.data.nCount = 3;
+    for (i = 0; i < 3; ++i)
+	rbs.position.data.arr[i] = i;
+    clock_gettime(CLOCK_REALTIME, &spec);
+    rbs.time.microseconds = spec.tv_nsec / 1000 + spec.tv_sec * 1000000;
+    printf("A: Emit rbs at %llu\n", rbs.time.microseconds);
+    a_RI_AB(&rbs);
+    a_RI_AX(&rbs);
 }
 
-void a_PI_BA(const asn1SccT_Int32 *IN_cnt)
+void print_rbs(const asn1SccBase_samples_RigidBodyState *rbs)
 {
-    /* Write your code here! */
-    printf("B -> A: %i\n", *IN_cnt);
+    int i;
+    printf("A: ");
+    for (i = 0; i < rbs->position.data.nCount; ++i)
+	printf("%i: %f ", i, rbs->position.data.arr[i]);
+    printf("\n");
 }
 
-void a_PI_XA(const asn1SccT_Int32 *IN_cnt)
+void a_PI_BA(const asn1SccBase_samples_RigidBodyState *IN_rbs)
 {
     /* Write your code here! */
-    printf("X -> A: %i\n", *IN_cnt);
+    print_rbs(IN_rbs);
+}
+
+void a_PI_XA(const asn1SccBase_samples_RigidBodyState *IN_rbs)
+{
+    /* Write your code here! */
+    print_rbs(IN_rbs);
 }
 

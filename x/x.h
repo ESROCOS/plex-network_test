@@ -13,13 +13,13 @@ extern "C" {
 
 void x_startup();
 
-void x_PI_AX(const asn1SccT_Int32 *);
+void x_PI_AX(const asn1SccBase_samples_RigidBodyState *);
 
-void x_PI_BX(const asn1SccT_Int32 *);
+void x_PI_BX(const asn1SccBase_samples_RigidBodyState *);
 
-extern void x_RI_XB(const asn1SccT_Int32 *);
+extern void x_RI_XB(const asn1SccBase_samples_RigidBodyState *);
 
-extern void x_RI_XA(const asn1SccT_Int32 *);
+extern void x_RI_XA(const asn1SccBase_samples_RigidBodyState *);
 
 #ifdef __cplusplus
 }

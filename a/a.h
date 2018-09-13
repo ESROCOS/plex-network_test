@@ -15,13 +15,13 @@ void a_startup();
 
 void a_PI_clock();
 
-void a_PI_BA(const asn1SccT_Int32 *);
+void a_PI_BA(const asn1SccBase_samples_RigidBodyState *);
 
-void a_PI_XA(const asn1SccT_Int32 *);
+void a_PI_XA(const asn1SccBase_samples_RigidBodyState *);
 
-extern void a_RI_AB(const asn1SccT_Int32 *);
+extern void a_RI_AB(const asn1SccBase_samples_RigidBodyState *);
 
-extern void a_RI_AX(const asn1SccT_Int32 *);
+extern void a_RI_AX(const asn1SccBase_samples_RigidBodyState *);
 
 #ifdef __cplusplus
 }

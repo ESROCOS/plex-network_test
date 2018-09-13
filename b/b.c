@@ -10,21 +10,39 @@ void b_startup()
     printf("B!\n");
 }
 
-void b_PI_AB(const asn1SccT_Int32 *IN_cnt)
+void print_rbs(const asn1SccBase_samples_RigidBodyState *rbs)
 {
-    /* Write your code here! */
-    asn1SccT_Int32 cnt = *IN_cnt;
-    cnt++;
-    printf("B -> X: %i\n", cnt);
-    b_RI_BX(&cnt);
+    int i;
+    printf("B: ");
+    for (i = 0; i < rbs->position.data.nCount; ++i)
+	printf("%i: %f ", i, rbs->position.data.arr[i]);
+    printf("\n");
 }
 
-void b_PI_XB(const asn1SccT_Int32 *IN_cnt)
+void inc_rbs(asn1SccBase_samples_RigidBodyState *rbs)
+{
+    int i;
+    for (i = 0; i < rbs->position.data.nCount; ++i)
+	rbs->position.data.arr[i] += 1.0;
+}
+
+void b_PI_AB(const asn1SccBase_samples_RigidBodyState *IN_rbs)
 {
     /* Write your code here! */
-    asn1SccT_Int32 cnt = *IN_cnt;
-    cnt++;
-    printf("B -> A: %i\n", cnt);
-    b_RI_BA(&cnt);
+    asn1SccBase_samples_RigidBodyState rbs = *IN_rbs;
+    print_rbs(&rbs);
+    inc_rbs(&rbs);
+    print_rbs(&rbs);
+    b_RI_BX(&rbs);
+}
+
+void b_PI_XB(const asn1SccBase_samples_RigidBodyState *IN_rbs)
+{
+    /* Write your code here! */
+    asn1SccBase_samples_RigidBodyState rbs = *IN_rbs;
+    print_rbs(&rbs);
+    inc_rbs(&rbs);
+    print_rbs(&rbs);
+    b_RI_BA(&rbs);
 }
 
